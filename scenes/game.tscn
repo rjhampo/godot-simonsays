@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://3prfkea3qphe"]
+[gd_scene load_steps=10 format=3 uid="uid://3prfkea3qphe"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ekvhp"]
 [ext_resource type="PackedScene" uid="uid://vo27qylqu8cx" path="res://scenes/button.tscn" id="1_o4t7r"]
 [ext_resource type="Texture2D" uid="uid://djrewabpap0bm" path="res://sprites/score_frame.png" id="1_wpxgr"]
 [ext_resource type="AudioStream" uid="uid://c48pkrh1flxx2" path="res://sfx/button_sound.ogg" id="3_lf4cf"]
+[ext_resource type="Texture2D" uid="uid://cf3s1am055a00" path="res://sprites/heart.png" id="5_wg3g6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykpoa"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -18,7 +19,7 @@ font_size = 56
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_eouq1"]
-font_size = 120
+font_size = 104
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve2D" id="Curve2D_4mcb6"]
@@ -35,6 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekvhp")
+start_scene_path = "res://scenes/start_menu.tscn"
 
 [node name="Border" type="Panel" parent="."]
 layout_mode = 0
@@ -43,15 +45,15 @@ offset_bottom = 1200.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ykpoa")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
+offset_right = 1200.0
+offset_bottom = 1200.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer6" type="MarginContainer" parent="VBoxContainer3"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
@@ -161,9 +163,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -600.0
-offset_top = 120.0
+offset_top = 136.0
 offset_right = 600.0
-offset_bottom = 288.0
+offset_bottom = 304.0
 grow_horizontal = 2
 text = "3"
 label_settings = SubResource("LabelSettings_eouq1")
@@ -184,11 +186,43 @@ offset_right = 1016.0
 offset_bottom = 312.0
 color = Color(0.644531, 0.644531, 0.644531, 1)
 
-[node name="BetweenRoundTimer" type="Timer" parent="."]
-wait_time = 4.0
+[node name="GameStartTimer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 autostart = true
 
+[node name="DuringRoundTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Heart1" type="TextureRect" parent="." groups=["lives"]]
+texture_filter = 1
+layout_mode = 0
+offset_left = 536.0
+offset_top = 120.0
+offset_right = 576.0
+offset_bottom = 160.0
+texture = ExtResource("5_wg3g6")
+
+[node name="Heart2" type="TextureRect" parent="." groups=["lives"]]
+texture_filter = 1
+layout_mode = 0
+offset_left = 576.0
+offset_top = 120.0
+offset_right = 616.0
+offset_bottom = 160.0
+texture = ExtResource("5_wg3g6")
+
+[node name="Heart3" type="TextureRect" parent="." groups=["lives"]]
+texture_filter = 1
+layout_mode = 0
+offset_left = 616.0
+offset_top = 120.0
+offset_right = 656.0
+offset_bottom = 160.0
+texture = ExtResource("5_wg3g6")
+
 [connection signal="end_round" from="." to="." method="_on_end_round"]
+[connection signal="no_life" from="." to="." method="_on_no_life"]
 [connection signal="start_round" from="." to="." method="_on_start_round"]
-[connection signal="timeout" from="BetweenRoundTimer" to="." method="_on_between_round_timer_timeout"]
+[connection signal="timeout" from="GameStartTimer" to="." method="_on_game_start_timer_timeout"]
+[connection signal="timeout" from="DuringRoundTimer" to="." method="_on_during_round_timer_timeout"]

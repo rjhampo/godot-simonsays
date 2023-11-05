@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://65fundpx2qi1"]
+[gd_scene load_steps=13 format=3 uid="uid://65fundpx2qi1"]
 
 [ext_resource type="Texture2D" uid="uid://dd4t65apvgmy5" path="res://sprites/title.png" id="1_eoh4x"]
 [ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_ttmxk"]
 [ext_resource type="Texture2D" uid="uid://oohrm41dv4uc" path="res://sprites/ui_button.png" id="2_e4mx8"]
-[ext_resource type="PackedScene" uid="uid://3prfkea3qphe" path="res://scenes/game.tscn" id="2_iw332"]
 [ext_resource type="Texture2D" uid="uid://bg0xmac1xts5g" path="res://sprites/ui_button_pressed.png" id="3_7gs77"]
 [ext_resource type="AudioStream" uid="uid://dre5cen6fv2yh" path="res://sfx/ui_button_sound.ogg" id="4_ryfgo"]
 [ext_resource type="AudioStream" uid="uid://3jylcjy44wk6" path="res://music/startmenu.wav" id="6_p2g81"]
@@ -54,7 +53,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ttmxk")
-game_scene = ExtResource("2_iw332")
+game_scene_path = "res://scenes/game.tscn"
 
 [node name="Border" type="Panel" parent="."]
 layout_mode = 0
