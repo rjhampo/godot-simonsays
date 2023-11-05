@@ -1,0 +1,144 @@
+[gd_scene load_steps=14 format=3 uid="uid://65fundpx2qi1"]
+
+[ext_resource type="Texture2D" uid="uid://dd4t65apvgmy5" path="res://sprites/title.png" id="1_eoh4x"]
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_ttmxk"]
+[ext_resource type="Texture2D" uid="uid://oohrm41dv4uc" path="res://sprites/ui_button.png" id="2_e4mx8"]
+[ext_resource type="PackedScene" uid="uid://3prfkea3qphe" path="res://scenes/game.tscn" id="2_iw332"]
+[ext_resource type="Texture2D" uid="uid://bg0xmac1xts5g" path="res://sprites/ui_button_pressed.png" id="3_7gs77"]
+[ext_resource type="AudioStream" uid="uid://dre5cen6fv2yh" path="res://sfx/ui_button_sound.ogg" id="4_ryfgo"]
+[ext_resource type="AudioStream" uid="uid://3jylcjy44wk6" path="res://music/startmenu.wav" id="6_p2g81"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syeso"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5qjfj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wmeeo"]
+texture = ExtResource("2_e4mx8")
+texture_margin_left = 10.0
+texture_margin_top = 2.0
+texture_margin_right = 10.0
+texture_margin_bottom = 5.0
+modulate_color = Color(1.25, 1.25, 1.25, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cv2o8"]
+texture = ExtResource("2_e4mx8")
+texture_margin_left = 10.0
+texture_margin_top = 2.0
+texture_margin_right = 10.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ewinr"]
+texture = ExtResource("3_7gs77")
+texture_margin_left = 10.0
+texture_margin_top = 2.0
+texture_margin_right = 10.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_47ga1"]
+Button/styles/focus = SubResource("StyleBoxEmpty_5qjfj")
+Button/styles/hover = SubResource("StyleBoxTexture_wmeeo")
+Button/styles/normal = SubResource("StyleBoxTexture_cv2o8")
+Button/styles/pressed = SubResource("StyleBoxTexture_ewinr")
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ttmxk")
+game_scene = ExtResource("2_iw332")
+
+[node name="Border" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1200.0
+offset_bottom = 1200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_syeso")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer3"]
+texture_filter = 1
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+texture = ExtResource("1_eoh4x")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="StartGame" type="Button" parent="VBoxContainer/VBoxContainer/MarginContainer"]
+modulate = Color(0.45098, 0.878431, 0.333333, 1)
+layout_mode = 2
+theme = SubResource("Theme_47ga1")
+theme_override_colors/font_color = Color(3, 3, 3, 1)
+theme_override_colors/font_pressed_color = Color(3, 3, 3, 1)
+theme_override_colors/font_hover_color = Color(3, 3, 3, 1)
+theme_override_colors/font_focus_color = Color(3, 3, 3, 1)
+theme_override_colors/font_hover_pressed_color = Color(3, 3, 3, 1)
+theme_override_font_sizes/font_size = 36
+text = "Start Game"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ExitGame" type="Button" parent="VBoxContainer/VBoxContainer/MarginContainer2"]
+modulate = Color(1, 0.180392, 0.0705882, 1)
+layout_mode = 2
+theme = SubResource("Theme_47ga1")
+theme_override_colors/font_color = Color(20, 20, 20, 1)
+theme_override_colors/font_pressed_color = Color(20, 20, 20, 1)
+theme_override_colors/font_hover_color = Color(20, 20, 20, 1)
+theme_override_colors/font_focus_color = Color(20, 20, 20, 1)
+theme_override_colors/font_hover_pressed_color = Color(20, 20, 20, 1)
+theme_override_font_sizes/font_size = 36
+text = "Exit Game"
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ryfgo")
+volume_db = -15.0
+
+[node name="StartMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_p2g81")
+volume_db = -30.0
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/MarginContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/MarginContainer2/ExitGame" to="." method="_on_exit_game_pressed"]

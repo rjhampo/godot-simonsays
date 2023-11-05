@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://vo27qylqu8cx"]
+
+[ext_resource type="Theme" uid="uid://bsareqc3v80vw" path="res://themes/game_button.tres" id="1_tpyy5"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="3_2dufr"]
+
+[node name="Button" type="Button"]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_tpyy5")
+action_mode = 0
+script = ExtResource("3_2dufr")
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
